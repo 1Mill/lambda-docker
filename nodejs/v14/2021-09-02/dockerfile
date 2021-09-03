@@ -5,7 +5,7 @@ COPY --from=public.ecr.aws/sentry/sentry-node-serverless-sdk:28 /opt/ /opt
 
 WORKDIR $LAMBDA_TASK_ROOT
 
-COPY *package*.json ./
+COPY package*.json ./
 RUN [ -f package-lock.json ] && npm ci || echo Skip
 
 COPY . .
