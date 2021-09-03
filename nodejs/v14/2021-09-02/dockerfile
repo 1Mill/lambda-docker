@@ -1,4 +1,6 @@
+# $_source=https://github.com/1Mill/lambda-docker/blob/main/nodejs/v14/2021-09-02/dockerfile
 # syntax=docker/dockerfile:1
+
 FROM public.ecr.aws/lambda/nodejs:14
 
 # Inject and auto-configure @sentry/serverless
@@ -18,8 +20,8 @@ RUN find . -type d -exec chmod 755 {} \;
 RUN find . -type f -exec chmod 644 {} \;
 
 ENV \
-        NODE_ENV=production \
-        SENTRY_DSN=$SENTRY_DSN \
-        SENTRY_TRACES_SAMPLE_RATE=0.001
+	NODE_ENV=production \
+	SENTRY_DSN=$SENTRY_DSN \
+	SENTRY_TRACES_SAMPLE_RATE=0.001
 
 CMD [ "index.handler" ]
