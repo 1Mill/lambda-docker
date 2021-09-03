@@ -1,15 +1,18 @@
 # syntax=docker/dockerfile:1
 FROM public.ecr.aws/lambda/nodejs:14
 
+# https://docs.sentry.io/platforms/node/guides/aws-lambda/container-image/
 COPY --from=public.ecr.aws/sentry/sentry-node-serverless-sdk:28 /opt/ /opt
 
 WORKDIR $LAMBDA_TASK_ROOT
 
+# Workaround for conditional COPY - https://stackoverflow.com/a/46801962
 COPY package*.json ./
 RUN [ -f package-lock.json ] && npm ci || echo Skip
 
 COPY . .
 
+# https://aws.amazon.com/premiumsupport/knowledge-center/lambda-deployment-package-errors/
 RUN find . -type d -exec chmod 755 {} \;
 RUN find . -type f -exec chmod 644 {} \;
 
