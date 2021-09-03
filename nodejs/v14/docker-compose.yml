@@ -1,0 +1,6 @@
+version: '3.8'
+
+services:
+  2021-09-02:
+    build: ./2021-09-02
+    image: 1mill/lambda:nodejs-v14-2021-09-02
