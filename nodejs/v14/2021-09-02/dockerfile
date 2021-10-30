@@ -21,6 +21,7 @@ RUN find . -type f -exec chmod 644 {} \;
 
 ENV \
 	NODE_ENV=production \
+	NODE_OPTIONS="-r @sentry/serverless/dist/awslambda-auto" \
 	SENTRY_DSN=$SENTRY_DSN \
 	SENTRY_TRACES_SAMPLE_RATE=0.001
 
