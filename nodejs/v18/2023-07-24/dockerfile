@@ -11,7 +11,7 @@ WORKDIR $LAMBDA_TASK_ROOT
 
 # Workaround for conditional COPY - https://stackoverflow.com/a/46801962
 COPY package*.json ./
-RUN [ -f package-lock.json ] && npm ci || echo "Skip, no package-lock.json file found"
+RUN [ -f package-lock.json ] && npm ci || echo "Skip, no package-lock.json found"
 
 COPY . .
 
